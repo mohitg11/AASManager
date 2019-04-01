@@ -1075,7 +1075,7 @@ function Invoke-AASManageYearMonthPartition {
     $currentYear = $currentDate.Year
     $currentMonth = $currentDate.Month
     $currentDay = $currentDate.Day
-    $dateFormatName = "MMM-yyyy"
+    $dateFormatName = "yyyy-MM MMM"
 
     $params = @{
         partition  = $partition
