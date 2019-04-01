@@ -57,9 +57,9 @@ function Set-DefaultAASConnection {
     )
 
     $Script:defaultConnection = "" | Select-Object -Property tenant, cred, location
-$Script:defaultConnection.tenant = $tenant
-$Script:defaultConnection.cred = $cred
-$Script:defaultConnection.location = $location
+    $Script:defaultConnection.tenant = $tenant
+    $Script:defaultConnection.cred = $cred
+    $Script:defaultConnection.location = $location
 
 }
 
@@ -949,7 +949,7 @@ function Invoke-AASManageYearPartition {
     connectAASAuto -tenant $tenant -cred $cred -location $location -connect:$connect
 
     # Get the current day, month and year
-    $currentDate = Get-Date -Date 6 -Month 1
+    $currentDate = Get-Date
     $currentMonth = $currentDate.Month
     $currentDay = $currentDate.Day
     $dateFormatName = "yyyy"
@@ -970,7 +970,7 @@ function Invoke-AASManageYearPartition {
         endDate        = (Get-Date -Day 01 -Month 01).AddYears(1)
     }
 
-    # (Re)Create current month's partition and process
+    # (Re)Create current year's partition and process
     Invoke-AASCreateTimeBasedPartition @params
 
     # Check for first 7 days of the year
@@ -1071,8 +1071,7 @@ function Invoke-AASManageYearMonthPartition {
     connectAASAuto -tenant $tenant -cred $cred -location $location -connect:$connect
 
     # Get the current day, month and year
-    $currentDate = Get-Date -Day 1 -Month 1
-    #$currentDate = Get-Date
+    $currentDate = Get-Date
     $currentYear = $currentDate.Year
     $currentMonth = $currentDate.Month
     $currentDay = $currentDate.Day
